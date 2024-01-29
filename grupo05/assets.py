@@ -2,11 +2,36 @@ import pygame
 import os
 from config import IMG_DIR, SND_DIR, FNT_DIR
 
+CHERRIES = 'cherries'
+FLOWER = 'flower'
+FRUIT = 'fruit-tree'
+LADYBUG='ladybug'
+TREE = 'tree'
+
+
 
 def carrega_arquivos():
     dicionario_de_arquivos = {}
     dicionario_de_arquivos['btn'] = pygame.image.load(os.path.join(IMG_DIR, 'btn1.png')).convert()
+    largura_img = 60
+    altura_img =  60
     
+    dicionario_de_arquivos[CHERRIES] = pygame.image.load(os.path.join(IMG_DIR, 'cherries.png')).convert_alpha()
+    dicionario_de_arquivos[CHERRIES] = pygame.transform.scale(dicionario_de_arquivos[CHERRIES], (largura_img, altura_img))
+        
+    dicionario_de_arquivos[FLOWER] = pygame.image.load(os.path.join(IMG_DIR, 'flower.png')).convert_alpha()
+    dicionario_de_arquivos[FLOWER] = pygame.transform.scale(dicionario_de_arquivos[FLOWER], (largura_img, altura_img))
+
+    dicionario_de_arquivos[FRUIT] = pygame.image.load(os.path.join(IMG_DIR, 'fruit_tree.png')).convert_alpha()
+    dicionario_de_arquivos[FRUIT] = pygame.transform.scale(dicionario_de_arquivos[FRUIT], (largura_img, altura_img))
+    
+    dicionario_de_arquivos[LADYBUG] = pygame.image.load(os.path.join(IMG_DIR, 'ladybug.png')).convert_alpha()
+    dicionario_de_arquivos[LADYBUG] = pygame.transform.scale(dicionario_de_arquivos[LADYBUG], (largura_img, altura_img))
+ 
+    dicionario_de_arquivos[TREE] = pygame.image.load(os.path.join(IMG_DIR, 'cherries.png')).convert_alpha()
+    dicionario_de_arquivos[TREE] = pygame.transform.scale(dicionario_de_arquivos[TREE], (largura_img, altura_img))
+
+
     #mudando tamanho das imagens
     largura = dicionario_de_arquivos['btn'].get_rect().width * .25
     altura = dicionario_de_arquivos['btn'].get_rect().height * .25
@@ -14,6 +39,7 @@ def carrega_arquivos():
 
     dicionario_de_arquivos['btn_hover'] = pygame.image.load(os.path.join(IMG_DIR, 'btn1_hover.png')).convert()
     dicionario_de_arquivos['btn_hover'] = pygame.transform.scale(dicionario_de_arquivos['btn_hover'], (largura, altura))
+
 
     #carregando Fonte
     dicionario_de_arquivos['font'] = pygame.font.Font(os.path.join(FNT_DIR, 'PressStart2P.ttf'), 22)
