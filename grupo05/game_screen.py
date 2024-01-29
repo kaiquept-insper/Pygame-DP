@@ -1,6 +1,7 @@
 import pygame
 from config import FPS, WIDTH, HEIGHT, BLACK, BLUE, RED
-from assets import carrega_arquivos
+from assets import *
+
 
 def colisao_entre_retangulos(x1, y1, largura1, altura1, x2, y2, largura2, altura2):
     if (x1 < x2 + largura2 and x1 + largura1 > x2 and y1 < y2 + altura2 and y1 + altura1 > y2):
@@ -34,7 +35,6 @@ def game_screen(window):
 
         # ----- Gera saídas
         window.fill(BLACK)  # Preenche com a cor branca
-
         # Lógica para alternar as cores
         agora = pygame.time.get_ticks()
         if agora - tempo_da_ultima_mudanca > 2000:
@@ -48,6 +48,7 @@ def game_screen(window):
             window.fill(BLUE)
         else:
             window.fill(RED)
+        window.blit(dicionario_de_arquivos[CHERRIES], (0,0))
 
         pygame.display.update()  # Mostra o novo frame para o jogador
 
