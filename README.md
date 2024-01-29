@@ -1,3 +1,3 @@
 # Pygame-DP
 
-Kaique Pelizer Tinto, Morgan Carvalho Lima
+Kaique Pelizer Tinto, Morgan Carvalho Lima, Maria Clara Hirano Motta
