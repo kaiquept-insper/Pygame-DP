@@ -22,8 +22,13 @@ def quantidade_imagens(X,dicionario_de_arquivos):
     
     img_sorteadas = random.sample(imagem_sorteada, X)
 
+    sortea_pergunta=random.choice(img_sorteadas)
+
     for imagem in img_sorteadas:
         qnt_sorteada = random.randint(5,10+1)
+
+        if sortea_pergunta == imagem:
+            resposta_correta = qnt_sorteada
 
         for i in range(qnt_sorteada):
             verificando_quadrado = {"image": dicionario_de_arquivos[imagem],
@@ -39,7 +44,7 @@ def quantidade_imagens(X,dicionario_de_arquivos):
             
             retorno.append(verificando_quadrado)
 
-    return retorno
+    return retorno, sortea_pergunta ,resposta_correta
 
 def game_screen(window):
     # Variável para o ajuste de velocidade
@@ -57,8 +62,9 @@ def game_screen(window):
     tela = 'azul'
     tempo_da_ultima_mudanca = pygame.time.get_ticks()
 
+    quantidade = 1
     # ===== Loop principal =====
-    lista_imagens = quantidade_imagens(1,dicionario_de_arquivos)
+    lista_imagens,pergunta,resposta = quantidade_imagens(quantidade,dicionario_de_arquivos)
     while state != DONE:
         clock.tick(FPS)
 
@@ -80,21 +86,26 @@ def game_screen(window):
             if tela == 'azul':
                 tela = 'vermelha'
             else:
+                if int(user_text) == resposta:
+                    quantidade += 1
+                    lista_imagens,pergunta,resposta = quantidade_imagens(quantidade,dicionario_de_arquivos)
                 tela = 'azul'
+
+
 
         if tela == 'azul':
             window.fill(BLUE)
-            cont = 0
+            
             for objeto in lista_imagens:
                 window.blit(objeto["image"], (objeto["x"],objeto["y"]))
-                cont += 1
+                
 
            
         else:
             window.fill(WHITE)
-
-            pergunta = base_font.render("Quantas imagens tem?", True, BLACK)
-            window.blit(pergunta, (WIDTH/2 - 275, HEIGHT/2 - 125))
+            window.blit(dicionario_de_arquivos[pergunta],(WIDTH/2 +50, HEIGHT/2 - 125))
+            pergunta_usr = base_font.render("Quantos?", True, BLACK)
+            window.blit(pergunta_usr, (WIDTH/2 - 275, HEIGHT/2 - 125))
 
             input_rect = pygame.Rect(WIDTH/2 - 175, HEIGHT/2 - 50, 350, 100) 
             pygame.draw.rect(window, BLACK, input_rect,2)
