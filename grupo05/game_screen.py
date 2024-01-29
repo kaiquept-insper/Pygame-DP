@@ -1,5 +1,5 @@
 import pygame
-from config import FPS, WIDTH, HEIGHT, BLACK, BLUE, RED
+from config import FPS, WIDTH, HEIGHT, BLACK, BLUE, RED, WHITE
 from assets import *
 import random
 
@@ -51,6 +51,9 @@ def game_screen(window):
     PLAYING = 1
     state = PLAYING
 
+    base_font = pygame.font.Font(None, 75)
+    user_text = ''
+
     tela = 'azul'
     tempo_da_ultima_mudanca = pygame.time.get_ticks()
 
@@ -66,6 +69,7 @@ def game_screen(window):
                 state = DONE
             if event.type == pygame.KEYDOWN:
                 apertada = event.unicode
+                user_text += apertada
 
         # ----- Gera saídas
         window.fill(BLACK)  # Preenche com a cor preto
@@ -80,13 +84,24 @@ def game_screen(window):
 
         if tela == 'azul':
             window.fill(BLUE)
+            cont = 0
             for objeto in lista_imagens:
                 window.blit(objeto["image"], (objeto["x"],objeto["y"]))
+                cont += 1
 
            
         else:
-            window.fill(RED)
-            pygame.Rect(200, 200, 140, 32)        
+            window.fill(WHITE)
+
+            pergunta = base_font.render("Quantas imagens tem?", True, BLACK)
+            window.blit(pergunta, (WIDTH/2 - 275, HEIGHT/2 - 125))
+
+            input_rect = pygame.Rect(WIDTH/2 - 175, HEIGHT/2 - 50, 350, 100) 
+            pygame.draw.rect(window, BLACK, input_rect,2)
+
+            text_surface = base_font.render(user_text, True, BLACK)
+            window.blit(text_surface, (WIDTH/2 - 150, HEIGHT/2 - 25))
+            
 
 
         pygame.display.update()  # Mostra o novo frame para o jogador
