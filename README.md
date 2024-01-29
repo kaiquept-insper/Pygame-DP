@@ -1,3 +1,3 @@
 # Pygame-DP
 
-Kaique Pelizer Tinto
+Kaique Pelizer Tinto, Morgan Carvalho Lima
