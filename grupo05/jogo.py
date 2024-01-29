@@ -1,4 +1,4 @@
-# ===== Inicialização =====
+3# ===== Inicialização =====
 # ----- Importa e inicia pacotes
 import pygame
 import random
@@ -10,7 +10,7 @@ pygame.init()
 pygame.mixer.init()
 
 # ----- Gera tela principal
-window = pygame.display.set_mode((WIDTH, HEIGHT))
+window = pygame.display.set_mode((WIDTH, HEIGHT)) 
 pygame.display.set_caption('Sorteiaa!!')
 
 state = INIT

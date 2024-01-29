@@ -7,6 +7,7 @@ FLOWER = 'flower'
 FRUIT = 'fruit-tree'
 LADYBUG='ladybug'
 TREE = 'tree'
+HEART = 'heart'
 
 
 def carrega_arquivos():
@@ -29,6 +30,10 @@ def carrega_arquivos():
  
     dicionario_de_arquivos[TREE] = pygame.image.load(os.path.join(IMG_DIR, 'cherries.png')).convert_alpha()
     dicionario_de_arquivos[TREE] = pygame.transform.scale(dicionario_de_arquivos[TREE], (largura_img, altura_img))
+     
+    dicionario_de_arquivos[HEART] = pygame.image.load(os.path.join(IMG_DIR, 'heart.png')).convert_alpha()
+    dicionario_de_arquivos[HEART] = pygame.transform.scale(dicionario_de_arquivos[HEART], (30, 30))
+
 
 
     #mudando tamanho das imagens
