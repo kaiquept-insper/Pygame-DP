@@ -36,7 +36,10 @@ def carrega_arquivos():
     dicionario_de_arquivos[HEART] = pygame.image.load(os.path.join(IMG_DIR, 'heart.png')).convert_alpha()
     dicionario_de_arquivos[HEART] = pygame.transform.scale(dicionario_de_arquivos[HEART], (30, 30))
 
+    #Musicas
 
+    dicionario_de_arquivos['success_sound'] = pygame.mixer.Sound(os.path.join(SND_DIR, 'success.wav'))
+    dicionario_de_arquivos['failure_sound'] = pygame.mixer.Sound(os.path.join(SND_DIR, 'wah-wah.wav'))
 
     #mudando tamanho das imagens
     largura = dicionario_de_arquivos['btn'].get_rect().width * .25

@@ -92,7 +92,8 @@ def game_screen(window):
                     quantidade += 1
                     lista_imagens,pergunta,resposta = quantidade_imagens(quantidade,dicionario_de_arquivos)
                     user_text = ""
-                    #som de vitoria!!!!!!!!!!!!!!!
+                    pygame.mixer.music.load(os.path.join(SND_DIR, 'success.wav'))
+                    pygame.mixer.music.play()
                 else:
                     global VIDAS
                     VIDAS -= 1
@@ -103,8 +104,8 @@ def game_screen(window):
                         quantidade += 1
                         lista_imagens,pergunta,resposta = quantidade_imagens(quantidade,dicionario_de_arquivos)
                         user_text = ""
-                        #diminui vida aqui!!!!!!!!!!!!!!
-                        #som da derrota!!!!!!!!!!!!!!!!!
+                        pygame.mixer.music.load(os.path.join(SND_DIR, 'wah-wah.wav'))
+                        pygame.mixer.music.play()
 
                 tela = 'azul'
                 
