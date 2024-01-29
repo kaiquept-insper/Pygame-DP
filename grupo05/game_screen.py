@@ -77,13 +77,15 @@ def game_screen(window):
                 tela = 'azul'
 
         if tela == 'azul':
-
             window.fill(BLUE)
+            for objeto in lista_imagens:
+                window.blit(objeto["image"], (objeto["x"],objeto["y"]))
+
+           
         else:
             window.fill(RED)
 
-        for objeto in lista_imagens:
-            window.blit(objeto["image"], (objeto["x"],objeto["y"]))
+        
 
         pygame.display.update()  # Mostra o novo frame para o jogador
 
