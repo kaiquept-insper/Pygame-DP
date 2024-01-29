@@ -64,6 +64,8 @@ def game_screen(window):
             # ----- Verifica consequências
             if event.type == pygame.QUIT:
                 state = DONE
+            if event.type == pygame.KEYDOWN:
+                apertada = event.unicode
 
         # ----- Gera saídas
         window.fill(BLACK)  # Preenche com a cor preto
@@ -84,8 +86,8 @@ def game_screen(window):
            
         else:
             window.fill(RED)
+            pygame.Rect(200, 200, 140, 32)        
 
-        
 
         pygame.display.update()  # Mostra o novo frame para o jogador
 
