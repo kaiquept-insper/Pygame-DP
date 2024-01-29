@@ -1,5 +1,5 @@
 import pygame
-from config import FPS, WIDTH, HEIGHT, BLACK, BLUE, RED, WHITE
+from config import FPS, QUIT, WIDTH, HEIGHT, BLACK, BLUE, RED, WHITE
 from assets import *
 import random
 VIDAS = 3
@@ -96,9 +96,9 @@ def game_screen(window):
                 else:
                     global VIDAS
                     VIDAS -= 1
-                    if VIDAS == 0:
-                        state = pygame.QUIT  # Encerra o jogo se as vidas acabarem
-                   
+                    if VIDAS <= 0:
+                        state = DONE  # Encerra o jogo se as vidas acabarem
+                        break
                     else:
                         quantidade += 1
                         lista_imagens,pergunta,resposta = quantidade_imagens(quantidade,dicionario_de_arquivos)
