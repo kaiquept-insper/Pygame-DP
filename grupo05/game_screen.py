@@ -2,6 +2,7 @@ import pygame
 from config import FPS, WIDTH, HEIGHT, BLACK, BLUE, RED, WHITE
 from assets import *
 import random
+VIDAS = 3
 
 def colisao_entre_retangulos(x1, y1, largura1, altura1, x2, y2, largura2, altura2):
     if (x1 < x2 + largura2 and x1 + largura1 > x2 and y1 < y2 + altura2 and y1 + altura1 > y2):
@@ -93,11 +94,17 @@ def game_screen(window):
                     user_text = ""
                     #som de vitoria!!!!!!!!!!!!!!!
                 else:
-                    quantidade += 1
-                    lista_imagens,pergunta,resposta = quantidade_imagens(quantidade,dicionario_de_arquivos)
-                    user_text = ""
-                    #diminui vida aqui!!!!!!!!!!!!!!
-                    #som da derrota!!!!!!!!!!!!!!!!!
+                    global VIDAS
+                    VIDAS -= 1
+                    if VIDAS == 0:
+                        state = pygame.QUIT  # Encerra o jogo se as vidas acabarem
+                   
+                    else:
+                        quantidade += 1
+                        lista_imagens,pergunta,resposta = quantidade_imagens(quantidade,dicionario_de_arquivos)
+                        user_text = ""
+                        #diminui vida aqui!!!!!!!!!!!!!!
+                        #som da derrota!!!!!!!!!!!!!!!!!
 
                 tela = 'azul'
                 
@@ -106,11 +113,12 @@ def game_screen(window):
         if tela == 'azul':
             window.fill(BLUE)
             ##renderiza a quantidade de vidaas(atualizado) que aparece na tela !!!!!!!!!!!!!!!!
+            for i in range(VIDAS):
+                window.blit(dicionario_de_arquivos['heart'], (10 + i * 40, 10))
             for objeto in lista_imagens:
                 window.blit(objeto["image"], (objeto["x"],objeto["y"]))
-                
-
-           
+            
+    
         else:
             window.fill(WHITE)
             window.blit(dicionario_de_arquivos[pergunta],(WIDTH/2 +50, HEIGHT/2 - 125))

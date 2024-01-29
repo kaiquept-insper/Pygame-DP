@@ -8,6 +8,8 @@ FRUIT = 'fruit-tree'
 LADYBUG='ladybug'
 TREE = 'tree'
 HEART = 'heart'
+VIDAS = 3
+
 
 
 def carrega_arquivos():
