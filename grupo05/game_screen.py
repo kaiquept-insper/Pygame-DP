@@ -1,6 +1,6 @@
 import pygame
 from config import FPS, WIDTH, HEIGHT, BLACK, BLUE, RED
-from assets import carrega_arquivos
+from assets import *
 dicionario_de_arquivos = carrega_arquivos
 from random import *
 
@@ -52,7 +52,6 @@ def game_screen(window):
 
         # ----- Gera saídas
         window.fill(BLACK)  # Preenche com a cor branca
-
         # Lógica para alternar as cores
         agora = pygame.time.get_ticks()
         if agora - tempo_da_ultima_mudanca > 2000:
@@ -66,6 +65,7 @@ def game_screen(window):
             window.fill(BLUE)
         else:
             window.fill(RED)
+        window.blit(dicionario_de_arquivos[CHERRIES], (0,0))
 
         pygame.display.update()  # Mostra o novo frame para o jogador
 
