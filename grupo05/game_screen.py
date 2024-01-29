@@ -85,17 +85,27 @@ def game_screen(window):
             tempo_da_ultima_mudanca = agora
             if tela == 'azul':
                 tela = 'vermelha'
+                user_text = ""
             else:
                 if int(user_text) == resposta:
                     quantidade += 1
                     lista_imagens,pergunta,resposta = quantidade_imagens(quantidade,dicionario_de_arquivos)
-                tela = 'azul'
+                    user_text = ""
+                    #som de vitoria!!!!!!!!!!!!!!!
+                else:
+                    quantidade += 1
+                    lista_imagens,pergunta,resposta = quantidade_imagens(quantidade,dicionario_de_arquivos)
+                    user_text = ""
+                    #diminui vida aqui!!!!!!!!!!!!!!
+                    #som da derrota!!!!!!!!!!!!!!!!!
 
+                tela = 'azul'
+                
 
 
         if tela == 'azul':
             window.fill(BLUE)
-            
+            ##renderiza a quantidade de vidaas(atualizado) que aparece na tela !!!!!!!!!!!!!!!!
             for objeto in lista_imagens:
                 window.blit(objeto["image"], (objeto["x"],objeto["y"]))
                 
