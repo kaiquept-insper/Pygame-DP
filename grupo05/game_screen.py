@@ -2,7 +2,8 @@ import pygame
 from config import FPS, QUIT, WIDTH, HEIGHT, BLACK, BLUE, RED, WHITE
 from assets import *
 import random
-VIDAS = 3
+
+
 
 def colisao_entre_retangulos(x1, y1, largura1, altura1, x2, y2, largura2, altura2):
     if (x1 < x2 + largura2 and x1 + largura1 > x2 and y1 < y2 + altura2 and y1 + altura1 > y2):
@@ -53,6 +54,8 @@ def game_screen(window):
 
     dicionario_de_arquivos = carrega_arquivos()
 
+    VIDAS = 3
+    pontos = 0
     DONE = 0
     PLAYING = 1
     state = PLAYING
@@ -90,15 +93,18 @@ def game_screen(window):
             else:
                 if user_text.isdigit():
                     if int(user_text) == resposta:
+                        
                         quantidade += 1
+                        pontos += 100
                         lista_imagens,pergunta,resposta = quantidade_imagens(quantidade,dicionario_de_arquivos)
                         user_text = ""
                         pygame.mixer.music.load(os.path.join(SND_DIR, 'success.wav'))
                         pygame.mixer.music.play()
                     else:
-                        global VIDAS
+                        
                         VIDAS -= 1
                         if VIDAS <= 0:
+                            return "RANK", pontos
                             state = DONE  # Encerra o jogo se as vidas acabarem
                             break
                         else:
@@ -110,6 +116,12 @@ def game_screen(window):
                 else:
                     VIDAS -= 1
                     if VIDAS <= 0:
+                        # window.fill(BLACK)
+                        # final = base_font.render("Pontuação:", True, BLACK)
+                        # window.blit(final, (WIDTH/2, HEIGHT/2 - 100))
+                        # pontuacao = base_font.render(str(pontos), True, RED)
+                        # window.blit(pontuacao, (WIDTH/2, HEIGHT/2))
+                        return "RANK", pontos
                         state = DONE  # Encerra o jogo se as vidas acabarem
                         break
                     else:
@@ -139,6 +151,9 @@ def game_screen(window):
             pergunta_usr = base_font.render("Quantos?", True, BLACK)
             window.blit(pergunta_usr, (WIDTH/2 - 175, HEIGHT/2 - 120))
 
+            pontuacao = base_font.render(str(pontos), True, RED)
+            window.blit(pontuacao, (WIDTH/2-25, HEIGHT/2 - 325))
+
             input_rect = pygame.Rect(WIDTH/2 - 175, HEIGHT/2 - 50, 350, 100) 
             pygame.draw.rect(window, BLACK, input_rect,2)
 
@@ -149,4 +164,4 @@ def game_screen(window):
 
         pygame.display.update()  # Mostra o novo frame para o jogador
 
-    return state
+    return state, pontos
