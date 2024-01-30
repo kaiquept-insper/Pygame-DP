@@ -88,14 +88,26 @@ def game_screen(window):
                 tela = 'vermelha'
                 user_text = ""
             else:
-                if int(user_text) == resposta:
-                    quantidade += 1
-                    lista_imagens,pergunta,resposta = quantidade_imagens(quantidade,dicionario_de_arquivos)
-                    user_text = ""
-                    pygame.mixer.music.load(os.path.join(SND_DIR, 'success.wav'))
-                    pygame.mixer.music.play()
+                if user_text.isdigit():
+                    if int(user_text) == resposta:
+                        quantidade += 1
+                        lista_imagens,pergunta,resposta = quantidade_imagens(quantidade,dicionario_de_arquivos)
+                        user_text = ""
+                        pygame.mixer.music.load(os.path.join(SND_DIR, 'success.wav'))
+                        pygame.mixer.music.play()
+                    else:
+                        global VIDAS
+                        VIDAS -= 1
+                        if VIDAS <= 0:
+                            state = DONE  # Encerra o jogo se as vidas acabarem
+                            break
+                        else:
+                            quantidade += 1
+                            lista_imagens,pergunta,resposta = quantidade_imagens(quantidade,dicionario_de_arquivos)
+                            user_text = ""
+                            pygame.mixer.music.load(os.path.join(SND_DIR, 'wah-wah.wav'))
+                            pygame.mixer.music.play()
                 else:
-                    global VIDAS
                     VIDAS -= 1
                     if VIDAS <= 0:
                         state = DONE  # Encerra o jogo se as vidas acabarem
@@ -106,6 +118,7 @@ def game_screen(window):
                         user_text = ""
                         pygame.mixer.music.load(os.path.join(SND_DIR, 'wah-wah.wav'))
                         pygame.mixer.music.play()
+
 
                 tela = 'azul'
                 
