@@ -125,7 +125,7 @@ def game_screen(window):
 
 
         if tela == 'azul':
-            window.fill(BLUE)
+            window.fill(WHITE)
             ##renderiza a quantidade de vidaas(atualizado) que aparece na tela !!!!!!!!!!!!!!!!
             for i in range(VIDAS):
                 window.blit(dicionario_de_arquivos['heart'], (10 + i * 40, 10))
@@ -135,9 +135,9 @@ def game_screen(window):
     
         else:
             window.fill(WHITE)
-            window.blit(dicionario_de_arquivos[pergunta],(WIDTH/2 +50, HEIGHT/2 - 125))
+            window.blit(dicionario_de_arquivos[pergunta],(WIDTH/2 +100, HEIGHT/2 - 130))
             pergunta_usr = base_font.render("Quantos?", True, BLACK)
-            window.blit(pergunta_usr, (WIDTH/2 - 275, HEIGHT/2 - 125))
+            window.blit(pergunta_usr, (WIDTH/2 - 175, HEIGHT/2 - 120))
 
             input_rect = pygame.Rect(WIDTH/2 - 175, HEIGHT/2 - 50, 350, 100) 
             pygame.draw.rect(window, BLACK, input_rect,2)
